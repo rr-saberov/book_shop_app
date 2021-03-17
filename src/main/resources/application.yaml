@@ -1,0 +1,26 @@
+server:
+  port: 8085
+
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db.changelog/db.changelog-master.xml
+  messages:
+    basename: lang.messages
+  web:
+    resources:
+      static-locations: classpath:/spring-frontend/
+  thymeleaf:
+    prefix: classpath:/spring-frontend/
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bookstore
+    username: postgres
+    password: newuserR-1
+    driver-class-name: org.postgresql.Driver
+    data: classpath:data.sql
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
