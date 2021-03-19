@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.services;
 
-import com.example.MyBookShopApp.data.User;
-import com.example.MyBookShopApp.data.UserRepository;
+import com.example.MyBookShopApp.entity.User;
+import com.example.MyBookShopApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

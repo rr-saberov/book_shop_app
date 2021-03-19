@@ -1,8 +1,7 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 
@@ -18,6 +17,7 @@ public class Genres {
 
     private String name;
 
-/*    @OneToOne(mappedBy = "genres_id")
-    private Book bookId;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book bookId;
 }

@@ -1,7 +1,6 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.entity;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -22,6 +21,15 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
+
+    @OneToOne(mappedBy = "bookId")
+    private Genres genre;
+
+
 
 /*
     @Getter

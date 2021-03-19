@@ -1,9 +1,10 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,6 +20,6 @@ public class User {
     private String password;
     private String eMail;
 
-/*    @OneToMany(mappedBy = "user")
-    private List<Book> books;*/
+    @OneToMany(mappedBy = "user")
+    private List<Book> books;
 }
