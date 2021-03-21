@@ -17,10 +17,10 @@ spring:
     username: postgres
     password: newuserR-1
     driver-class-name: org.postgresql.Driver
-    #0data: classpath:data.sql
+    data: classpath:data.sql
     initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true

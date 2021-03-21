@@ -55,7 +55,7 @@ public class Book {
     @Column(name = "discount")
     @JsonProperty("discount")
     @ApiModelProperty("discount value")
-    private Double price;
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
