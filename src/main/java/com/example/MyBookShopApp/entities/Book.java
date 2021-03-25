@@ -1,10 +1,8 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

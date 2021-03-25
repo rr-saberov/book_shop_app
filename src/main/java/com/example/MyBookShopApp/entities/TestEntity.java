@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entities;
 
 import lombok.Data;
 

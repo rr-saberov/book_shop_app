@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
@@ -16,7 +16,6 @@ import java.util.List;
 @ApiModel(description = "data model of author entity")
 @NoArgsConstructor
 public class Author {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

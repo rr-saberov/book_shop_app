@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entities;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

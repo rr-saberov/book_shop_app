@@ -1,6 +1,6 @@
-package com.example.MyBookShopApp.repository;
+package com.example.MyBookShopApp.repositories;
 
-import com.example.MyBookShopApp.entity.Author;
+import com.example.MyBookShopApp.entities.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

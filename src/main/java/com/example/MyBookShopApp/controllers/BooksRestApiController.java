@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.services.BookService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -52,6 +52,6 @@ public class BooksRestApiController {
     @ApiOperation("operation to get bestsellers")
     @GetMapping("/books/bestsellers")
     public ResponseEntity<List<Book>> bestSellerBooks() {
-        return ResponseEntity.ok(bookService.getBestsellers());
+        return ResponseEntity.ok(bookService.getBestsellers().getContent());
     }
 }
