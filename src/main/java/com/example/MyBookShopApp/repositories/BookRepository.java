@@ -21,13 +21,13 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     //new book repo commands
 
-    List<Book> findBooksByAuthorFirstNameContaining(String authorFirstName);
+    List<Book> getBooksByAuthorFirstNameContaining(String authorFirstName);
 
-    List<Book> findBooksByTitleContaining(String bookTitle);
+    List<Book> getBooksByTitleContaining(String bookTitle);
 
-    List<Book> findBooksByPriceBetween(Integer min, Integer max);
+    List<Book> getBooksByPriceBetween(Integer min, Integer max);
 
-    List<Book> findBooksByPriceOldIs(Integer price);
+    List<Book> getBooksByPriceOldIs(Integer price);
 
     @Query("FROM Book ORDER BY pubDate")
     List<Book> findBooksByPubDate(Pageable pageable);
@@ -41,11 +41,21 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT * FROM books " +
             "WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
-    
-    List<Book> findBookByTitleContaining(String bookTitle, Pageable nextPage);
 
-//    @Query( "FROM Book " +
-//            "LEFT JOIN genres ON books.id = genres.book_id " +
-//            "WHERE genres.name = (:genre)")
-//    List<Book> getBooksByGenre(@Param("genre") String genre, Pageable nextPage);
+    List<Book> getBookByTitleContaining(String bookTitle, Pageable nextPage);
+
+//    @Query("FROM Book " +
+//            "LEFT JOIN Tag ON Book.id = Tag.id " +
+//            "WHERE Tag.tagName = ?1")
+//    List<Book> getBooksByTag(String tag, Pageable nextPage);
+//
+//    @Query("FROM Book " +
+//            "LEFT JOIN Genres ON Book.id = Genres.id " +
+//            "WHERE Genres.name = ?1")
+//    List<Book> getBooksByGenre(String genre, Pageable nextPage);
+//
+//    @Query("FROM Book " +
+//            "JOIN Author On Book.id = Author.id " +
+//            "WHERE Author.lastName = ?1")
+//    List<Book> getBooksByAuthor(String authorName, Pageable nextPage);
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -56,10 +57,14 @@ public class Book {
     private Integer price;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToOne(mappedBy = "bookId")
+    @ManyToOne
+    @JoinColumn(name = "genres_id", referencedColumnName = "id")
     private Genres genre;
+
+    @OneToMany(mappedBy = "book")
+    private List<Tag> tagList;
 
 }

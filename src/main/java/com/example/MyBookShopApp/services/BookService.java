@@ -7,8 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,19 +30,19 @@ public class BookService {
     }
 
     public List<Book> getBooksByAuthor(String authorName) {
-        return bookRepository.findBooksByAuthorFirstNameContaining(authorName);
+        return bookRepository.getBooksByAuthorFirstNameContaining(authorName);
     }
 
     public List<Book> getBooksByTitle(String title) {
-        return bookRepository.findBooksByTitleContaining(title);
+        return bookRepository.getBooksByTitleContaining(title);
     }
 
     public List<Book> getBooksWithPriceBetween(Integer min, Integer max) {
-        return bookRepository.findBooksByPriceBetween(min, max);
+        return bookRepository.getBooksByPriceBetween(min, max);
     }
 
     public List<Book> getBooksWithPrice(Integer price) {
-        return bookRepository.findBooksByPriceOldIs(price);
+        return bookRepository.getBooksByPriceOldIs(price);
     }
 
     public List<Book> getBooksWithMaxDiscount() {
@@ -72,11 +70,21 @@ public class BookService {
 
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        return new PageImpl<>(bookRepository.findBookByTitleContaining(searchWord, nextPage));
+        return new PageImpl<>(bookRepository.getBookByTitleContaining(searchWord, nextPage));
     }
 
+//    public Page<Book> getPageBooksByTag(String tag, Integer offset, Integer limit) {
+//        Pageable nextPage = PageRequest.of(offset, limit);
+//        return new PageImpl<>(bookRepository.getBooksByTag(tag, nextPage));
+//    }
+//
 //    public Page<Book> getPageBooksByGenre(String genre, Integer offset, Integer limit) {
 //        Pageable nextPage = PageRequest.of(offset, limit);
 //        return new PageImpl<>(bookRepository.getBooksByGenre(genre, nextPage));
 //    }
+
+/*    public Page<Book> getPageBooksByAuthor(String author, Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        return new PageImpl<>(bookRepository.getBooksByAuthor(author, nextPage));
+    }*/
 }

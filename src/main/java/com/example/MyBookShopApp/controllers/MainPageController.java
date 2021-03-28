@@ -68,12 +68,34 @@ public class MainPageController {
     }
 
 //    @ResponseBody
-//    @GetMapping("/books/byGenre")
-//    public BooksPageDto(@RequestParam Integer)
+//    @GetMapping("/books/author/{author}")
+//    public String getBooksByAuthor(@PathVariable(value = "author", required = false) SearchWordDto searchWordDto,
+//                                   Model model) {
+//        model.addAttribute("searchWordDto", searchWordDto);
+//        model.addAttribute("searchResults",
+//                bookService.getPageBooksByAuthor(searchWordDto.getExample(), 0, 5).getContent());
+//        return "/books/author";
+//    }
 
 //    @ResponseBody
+//    @GetMapping("/books/byGenre/{genre}")
+//    public String getBooksByGenre(@PathVariable(value = "genre", required = false) SearchWordDto searchWordDto,
+//                                  Model model) {
+//        model.addAttribute("searchWordDto", searchWordDto);
+//        model.addAttribute("searchResults",
+//                bookService.getPageBooksByGenre(searchWordDto.getExample(), 0, 5).getContent());
+//        return "/search/index";
+//    }
+//
+//    @ResponseBody
 //    @GetMapping("books/tags/{tag}")
-//    public String getBooksByTags(@PathVariable(value = {"tag"}, required = false))
+//    public String getBooksByTags(@PathVariable(value = "tag", required = false) SearchWordDto searchWordDto,
+//                                 Model model) {
+//        model.addAttribute("searchWordDto", searchWordDto);
+//        model.addAttribute("searchResults",
+//                bookService.getPageBooksByTag(searchWordDto.getExample(), 0, 5).getContent());
+//        return "/search/index";
+//    }
 
     @GetMapping("/api/authors")
     public List<Book> books() {
@@ -96,5 +118,4 @@ public class MainPageController {
                                     @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
         return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
     }
-
 }
