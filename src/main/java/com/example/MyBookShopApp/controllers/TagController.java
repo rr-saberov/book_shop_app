@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class GenresController {
+public class TagController {
 
     private final BookService bookService;
 
     @Autowired
-    public GenresController(BookService bookService) {
+    public TagController(BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -34,23 +34,13 @@ public class GenresController {
         return new ArrayList<>();
     }
 
-    @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks() {
-        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
-    }
-
-    @GetMapping("/genres")
-    public String genresPage() {
-        return "genres/index";
-    }
-
     @ResponseBody
-    @GetMapping("/books/byGenre/{genre}")
-    public String getBooksByGenre(@PathVariable(value = "genre", required = false) SearchWordDto searchWordDto,
-                                  Model model) {
+    @GetMapping("books/tags/{tag}")
+    public String getBooksByTags(@PathVariable(value = "tag", required = false) SearchWordDto searchWordDto,
+                                 Model model) {
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResults",
-                bookService.getPageBooksByGenre(searchWordDto.getExample(), 0, 5).getContent());
-        return "/genres/index";
+                bookService.getPageBooksByTag(searchWordDto.getExample(), 0, 5).getContent());
+        return "/tags/index";
     }
 }

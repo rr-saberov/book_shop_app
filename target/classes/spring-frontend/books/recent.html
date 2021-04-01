@@ -58,32 +58,63 @@ p.error-browser
             <ul class="breadcrumbs">
                 <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}">Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/recent}" th:text="#{topbar.books}">Книги</a>
+                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/recent}"
+                                                th:text="#{topbar.books}">Книги</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current" th:text="#{topbar.recent}"><span>Новинки</span>
                 </li>
             </ul>
-            <br>
-                <div class="Cards Cards_refresh">
-                <div class="Card" th:each="book : ${newBooks}">
-                    <div class="Card-picture" >
-                        <a href="#"><img src="/assets/img/content/main/card.jpg" alt="card.jpg"/></a>
-                    </div>
-                    <div class="Card-content" >
-                        <strong class="Card-title" th:text="${book.title}"><a href="#">Техника</a>
-                        </strong>
-                        <div class="Card-description" th:text="${book.author}">Кондратенко Александр Петрович
+
+
+            <div class="Section">
+                <div class="Section-header">
+                    <h1 class="Section-title">Новинки
+                    </h1>
+                    <form class="form form_inline Section-header-form" action="#" method="post">
+                        <div class="form-group">
+                            <label class="form-label" th:text="#{middlebar.from}">с
+                            </label>
+                            <input class="form-input form-input_date form-input_date_uninit" id="fromdaterecent"
+                                   name="fromdaterecent" type="text" placeholder="Дата" data-refreshoffset="20"
+                                   data-refreshlimit="10" data-refreshshow="changedate" data-refreshfrom="0"
+                                   autocomplete="off"/>
                         </div>
-                        <div class="Card-cost"><span class="Card-priceOld"
-                                                     th:text="${book.priceOld}">₽300.00</span><span class="Card-price" th:text="${book.price}">₽190.00</span>
+                        <div class="form-group">
+                            <label class="form-label" th:text="#{middlebar.to}">по
+                            </label>
+                            <input class="form-input form-input_date form-input_date_uninit" id="enddaterecent"
+                                   name="enddaterecent" type="text" placeholder="Дата" data-refreshoffset="20"
+                                   data-refreshlimit="10" data-refreshshow="changedate" data-refreshto="0"
+                                   autocomplete="off"/>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#"
-                                                                 data-refreshshow="recent" data-refreshoffset="20"
-                                                                 data-refreshlimit="20">Показать еще</a>
+
+
+                <br>
+                <div class="Cards Cards_refresh">
+                    <div class="Card" th:each="book : ${newBooks}">
+                        <div class="Card-picture">
+                            <a href="#"><img src="/assets/img/content/main/card.jpg" alt="card.jpg"/></a>
+                        </div>
+                        <div class="Card-content">
+                            <strong class="Card-title" th:text="${book.title}"><a href="#">Техника</a>
+                            </strong>
+                            <div class="Card-description" th:text="${book.author}">Кондратенко Александр Петрович
+                            </div>
+                            <div class="Card-cost"><span class="Card-priceOld"
+                                                         th:text="${book.priceOld}">₽300.00</span><span
+                                    class="Card-price" th:text="${book.price}">₽190.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#"
+                                                                     data-refreshshow="recent" data-refreshoffset="20"
+                                                                     data-refreshlimit="20">Показать еще</a>
+                    </div>
                 </div>
             </div>
+<!--        </main>-->
         </main>
     </div>
 </div>

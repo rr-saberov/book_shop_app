@@ -26,11 +26,6 @@ public class Book {
     @ApiModelProperty("publish date")
     private Date pubDate;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    @ApiModelProperty("book author name")
-    private Author author;
-
     @Column(name = "is_bestseller")
     @ApiModelProperty("if bestseller = 1")
     private Integer isBestseller;
@@ -63,6 +58,11 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "genres_id", referencedColumnName = "id")
     private Genres genre;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @ApiModelProperty("book author name")
+    private Author author;
 
     @OneToMany(mappedBy = "book")
     private List<Tag> tagList;

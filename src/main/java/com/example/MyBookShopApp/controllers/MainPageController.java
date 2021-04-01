@@ -51,55 +51,20 @@ public class MainPageController {
 
     @ResponseBody
     @GetMapping("/books/recommended")
-    public BooksPageDto getBooksPage(@RequestParam Integer offset, @RequestParam Integer limit) {
-        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset,limit).getContent());
+    public BooksPageDto getBooksPage(@RequestParam Integer page, @RequestParam Integer limit) {
+        return new BooksPageDto(bookService.getPageOfRecommendedBooks(page, limit).getContent());
     }
 
     @ResponseBody
     @GetMapping("/books/recent")
-    public BooksPageDto getNewBooksPage(@RequestParam Integer offset, @RequestParam Integer limit) {
-        return new BooksPageDto(bookService.getPageOfNewBooks(offset,limit).getContent());
+    public BooksPageDto getNewBooksPage(@RequestParam Integer page, @RequestParam Integer limit) {
+        return new BooksPageDto(bookService.getPageOfNewBooks(page, limit).getContent());
     }
 
     @ResponseBody
     @GetMapping("/books/popular")
-    public BooksPageDto getPopularBooksPage(@RequestParam Integer offset, @RequestParam Integer limit) {
-        return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
-    }
-
-//    @ResponseBody
-//    @GetMapping("/books/author/{author}")
-//    public String getBooksByAuthor(@PathVariable(value = "author", required = false) SearchWordDto searchWordDto,
-//                                   Model model) {
-//        model.addAttribute("searchWordDto", searchWordDto);
-//        model.addAttribute("searchResults",
-//                bookService.getPageBooksByAuthor(searchWordDto.getExample(), 0, 5).getContent());
-//        return "/books/author";
-//    }
-
-//    @ResponseBody
-//    @GetMapping("/books/byGenre/{genre}")
-//    public String getBooksByGenre(@PathVariable(value = "genre", required = false) SearchWordDto searchWordDto,
-//                                  Model model) {
-//        model.addAttribute("searchWordDto", searchWordDto);
-//        model.addAttribute("searchResults",
-//                bookService.getPageBooksByGenre(searchWordDto.getExample(), 0, 5).getContent());
-//        return "/search/index";
-//    }
-//
-//    @ResponseBody
-//    @GetMapping("books/tags/{tag}")
-//    public String getBooksByTags(@PathVariable(value = "tag", required = false) SearchWordDto searchWordDto,
-//                                 Model model) {
-//        model.addAttribute("searchWordDto", searchWordDto);
-//        model.addAttribute("searchResults",
-//                bookService.getPageBooksByTag(searchWordDto.getExample(), 0, 5).getContent());
-//        return "/search/index";
-//    }
-
-    @GetMapping("/api/authors")
-    public List<Book> books() {
-        return bookService.getBooksData();
+    public BooksPageDto getPopularBooksPage(@RequestParam Integer page, @RequestParam Integer limit) {
+        return new BooksPageDto(bookService.getPageOfPopularBooks(page, limit).getContent());
     }
 
     @GetMapping(value = {"/search", "/search/{searchWord}"})
@@ -111,11 +76,12 @@ public class MainPageController {
         return "/search/index";
     }
 
-    @ResponseBody
     @GetMapping("/search/page/{searchWord}")
+    @ResponseBody
     public BooksPageDto getNextPage(@RequestParam Integer offset,
                                     @RequestParam Integer limit,
                                     @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
-        return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
+        return new BooksPageDto(bookService
+                .getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
     }
 }
