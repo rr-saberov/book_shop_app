@@ -2,7 +2,7 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.entities.SearchWordDto;
-import com.example.MyBookShopApp.services.BookService;
+import com.example.MyBookShopApp.services.GenresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +17,11 @@ import java.util.List;
 @Controller
 public class GenresController {
 
-    private final BookService bookService;
+    private final GenresService genresService;
 
     @Autowired
-    public GenresController(BookService bookService) {
-        this.bookService = bookService;
+    public GenresController(GenresService genresService) {
+        this.genresService = genresService;
     }
 
     @ModelAttribute("searchWordDto")
@@ -34,14 +34,19 @@ public class GenresController {
         return new ArrayList<>();
     }
 
-    @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks() {
-        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
-    }
+//    @ModelAttribute("booksByGenre")
+//    public List<Book> booksByGenre() {
+//        return genresService.getBooksByGenre();
+//    }
 
     @GetMapping("/genres")
     public String genresPage() {
         return "genres/index";
+    }
+
+    @GetMapping("/genres/slug")
+    public String genresSlugPage() {
+        return "genres/slug";
     }
 
     @ResponseBody
@@ -50,7 +55,7 @@ public class GenresController {
                                   Model model) {
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResults",
-                bookService.getPageBooksByGenre(searchWordDto.getExample(), 0, 5).getContent());
+                genresService.getBooksPageByGenre(searchWordDto.getExample(), 0, 5).getContent());
         return "/genres/index";
     }
 }

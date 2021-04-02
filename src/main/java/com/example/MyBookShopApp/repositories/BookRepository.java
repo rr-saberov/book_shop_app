@@ -40,41 +40,41 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
 
-    @Query("SELECT b.title " +
+/*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Author au " +
             "ORDER BY au.lastName")
-    List<Book> getBooksOrderByAuthor(Pageable nextPage);
+    List<Book> getBooksOrderByAuthor(Pageable nextPage);*/
 
-    @Query("SELECT b.title " +
+/*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Genres gen " +
             "ORDER BY gen.name")
-    List<Book> getBooksOrderByGenre(Pageable nextPage);
+    List<Book> getBooksOrderByGenre(Pageable nextPage);*/
 
-    @Query("SELECT b.title " +
+/*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Tag tag " +
             "ORDER BY tag.tagName")
-    List<Book> getBooksOrderByTag(Pageable nextPage);
+    List<Book> getBooksOrderByTag(Pageable nextPage);*/
 
-    @Query("SELECT b.title " +
+/*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Author au " +
             "WHERE au.lastName = :authorName")
-    List<Book> getBooksByAuthorLastName(@Param("authorName") String authorName, Pageable nextPage);
+    List<Book> getBooksByAuthorLastName(@Param("authorName") String authorName, Pageable nextPage);*/
 
-    @Query("SELECT b.title " +
+/*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Genres ge "
             + "WHERE ge.name = :genreName")
-    List<Book> getBooksByGenreName(@Param("genreName") String genre, Pageable nextPage);
+    List<Book> getBooksByGenreName(@Param("genreName") String genre, Pageable nextPage);*/
 
-    @Query("SELECT b.title " +
+/*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Tag tag " +
             "WHERE tag.tagName = :tagName")
-    List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);
+    List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);*/
 
 
 }

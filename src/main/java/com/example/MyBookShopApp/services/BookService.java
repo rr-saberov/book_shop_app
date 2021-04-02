@@ -73,15 +73,16 @@ public class BookService {
         return new PageImpl<>(bookRepository.getBookByTitleContaining(searchWord, nextPage));
     }
 
-    public Page<Book> getPageBooksByAuthor(String author, Integer page, Integer limit) {
+/*    public Page<Book> getPageBooksByAuthor(String author, Integer page, Integer limit) {
         Pageable nextPage = PageRequest.of(page, limit);
         if (author.isEmpty()) {
         return new PageImpl<>(bookRepository.getBooksOrderByAuthor(nextPage));
         } else {
             return new PageImpl<>(bookRepository.getBooksByAuthorLastName(author, nextPage));
         }
-    }
+    }*/
 
+/*
     public Page<Book> getPageBooksByGenre(String genre, Integer page, Integer limit) {
         Pageable nextPage = PageRequest.of(page, limit);
         if (genre.isEmpty()) {
@@ -90,13 +91,14 @@ public class BookService {
             return new PageImpl<>(bookRepository.getBooksByGenreName(genre, nextPage));
         }
     }
+*/
 
-    public Page<Book> getPageBooksByTag(String tag, Integer page, Integer limit) {
+/*    public Page<Book> getPageBooksByTag(String tag, Integer page, Integer limit) {
         Pageable nextPage = PageRequest.of(page, limit);
         if (tag.isEmpty()) {
             return new PageImpl<>(bookRepository.getBooksOrderByTag(nextPage));
         } else {
             return new PageImpl<>(bookRepository.getBooksByTagName(tag, nextPage));
         }
-    }
+    }*/
 }

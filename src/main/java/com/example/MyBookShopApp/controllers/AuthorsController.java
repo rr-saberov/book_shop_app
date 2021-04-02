@@ -20,12 +20,10 @@ import java.util.Map;
 public class AuthorsController {
 
     private final AuthorService authorService;
-    private final BookService bookService;
 
     @Autowired
-    public AuthorsController(AuthorService authorService, BookService bookService) {
+    public AuthorsController(AuthorService authorService) {
         this.authorService = authorService;
-        this.bookService = bookService;
     }
 
     @ModelAttribute("authorsMap")
@@ -38,9 +36,9 @@ public class AuthorsController {
         return "authors/index";
     }
 
-    @GetMapping("/api/authors")
-    public List<Book> books() {
-        return bookService.getBooksData();
+    @GetMapping("/authors/slug")
+    public String authorsSlugPage() {
+        return "genres/slug";
     }
 
     @ResponseBody
@@ -49,7 +47,7 @@ public class AuthorsController {
                                    Model model) {
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResults",
-                bookService.getPageBooksByAuthor(searchWordDto.getExample(), 0, 5).getContent());
+                authorService.getBooksPageByAuthor(searchWordDto.getExample(), 0, 5).getContent());
         return "/books/author";
     }
 }

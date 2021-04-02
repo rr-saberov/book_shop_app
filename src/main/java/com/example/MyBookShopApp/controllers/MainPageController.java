@@ -51,20 +51,20 @@ public class MainPageController {
 
     @ResponseBody
     @GetMapping("/books/recommended")
-    public BooksPageDto getBooksPage(@RequestParam Integer page, @RequestParam Integer limit) {
-        return new BooksPageDto(bookService.getPageOfRecommendedBooks(page, limit).getContent());
+    public BooksPageDto getBooksPage(@RequestParam Integer offset, @RequestParam Integer limit) {
+        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
     @ResponseBody
     @GetMapping("/books/recent")
-    public BooksPageDto getNewBooksPage(@RequestParam Integer page, @RequestParam Integer limit) {
-        return new BooksPageDto(bookService.getPageOfNewBooks(page, limit).getContent());
+    public BooksPageDto getNewBooksPage(@RequestParam Integer offset, @RequestParam Integer limit) {
+        return new BooksPageDto(bookService.getPageOfNewBooks(offset, limit).getContent());
     }
 
     @ResponseBody
     @GetMapping("/books/popular")
-    public BooksPageDto getPopularBooksPage(@RequestParam Integer page, @RequestParam Integer limit) {
-        return new BooksPageDto(bookService.getPageOfPopularBooks(page, limit).getContent());
+    public BooksPageDto getPopularBooksPage(@RequestParam Integer offset, @RequestParam Integer limit) {
+        return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
     }
 
     @GetMapping(value = {"/search", "/search/{searchWord}"})

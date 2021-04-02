@@ -31,7 +31,7 @@ public class Book {
     private Integer isBestseller;
 
     @ApiModelProperty("identity sequence of characters")
-    private String slag;
+    private String slug;
     @ApiModelProperty("book title")
     private String title;
     @ApiModelProperty("book image URL")
