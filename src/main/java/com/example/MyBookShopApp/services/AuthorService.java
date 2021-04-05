@@ -28,6 +28,10 @@ public class AuthorService {
                 .collect(Collectors.groupingBy((Author a) -> a.getLastName().substring(0, 1)));
     }
 
+    public List<Book> getBooksByAuthor() {
+        return authorRepository.getBooksOrderByAuthor();
+    }
+
     public Page<Book> getBooksPageByAuthor(String authorName, Integer page, Integer limit) {
         PageRequest nextPage = PageRequest.of(page, limit);
         if (authorName.isEmpty()) {

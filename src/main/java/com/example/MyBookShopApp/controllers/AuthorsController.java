@@ -31,6 +31,11 @@ public class AuthorsController {
         return authorService.getAuthorsMap();
     }
 
+    @ModelAttribute("recommendedBooks")
+    public List<Book> recommendedBooks() {
+        return authorService.getBooksByAuthor();
+    }
+
     @GetMapping("/authors")
     public String authorsPage() {
         return "authors/index";

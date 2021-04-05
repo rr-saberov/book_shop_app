@@ -16,8 +16,7 @@ public interface TagRepository extends JpaRepository<Tag, Integer> {
 
     @Query("SELECT b " +
             "FROM Book b " +
-            "JOIN Tag tag " +
-            "ORDER BY tag.tagName")
+            "JOIN Tag tag")
     List<Book> getBooksOrderByTag();
 
     @Query("SELECT b " +

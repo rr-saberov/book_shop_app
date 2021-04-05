@@ -25,4 +25,9 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
             "WHERE au.lastName = :authorName")
     List<Book> getBooksByAuthorLastName(@Param("authorName") String authorName, Pageable nextPage);
 
+    @Query("SELECT b " +
+            "FROM Book b " +
+            "JOIN Author  au " +
+            "ORDER BY au.lastName")
+    List<Book> getBooksOrderByAuthor();
 }

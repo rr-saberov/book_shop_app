@@ -15,8 +15,7 @@ public interface GenresRepository extends JpaRepository<Genres, Integer> {
 
     @Query("SELECT b " +
             "FROM Book b " +
-            "JOIN Genres ge " +
-            "ORDER BY ge.name")
+            "ORDER BY b.genre.name")
     List<Book> getBooksOrderByGenre();
 
     @Query("SELECT b " +

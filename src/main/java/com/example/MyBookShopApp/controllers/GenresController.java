@@ -34,10 +34,10 @@ public class GenresController {
         return new ArrayList<>();
     }
 
-//    @ModelAttribute("booksByGenre")
-//    public List<Book> booksByGenre() {
-//        return genresService.getBooksByGenre();
-//    }
+    @ModelAttribute("booksByGenre")
+    public List<Book> booksByGenre() {
+        return genresService.getBooksByGenre();
+    }
 
     @GetMapping("/genres")
     public String genresPage() {
