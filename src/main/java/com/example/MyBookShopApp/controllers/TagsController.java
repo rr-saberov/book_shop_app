@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class TagController {
+public class TagsController {
 
     private final TagService tagService;
 
     @Autowired
-    public TagController(TagService tagService) {
+    public TagsController(TagService tagService) {
         this.tagService = tagService;
     }
 

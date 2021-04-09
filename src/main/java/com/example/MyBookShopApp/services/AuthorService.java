@@ -27,17 +27,4 @@ public class AuthorService {
         return authorRepository.findAll().stream()
                 .collect(Collectors.groupingBy((Author a) -> a.getLastName().substring(0, 1)));
     }
-
-    public List<Book> getBooksByAuthor() {
-        return authorRepository.getBooksOrderByAuthor();
-    }
-
-    public Page<Book> getBooksPageByAuthor(String authorName, Integer page, Integer limit) {
-        PageRequest nextPage = PageRequest.of(page, limit);
-        if (authorName.isEmpty()) {
-            return new PageImpl<>(authorRepository.getBooksOrderByAuthor(nextPage));
-        } else {
-            return new PageImpl<>(authorRepository.getBooksByAuthorLastName(authorName, nextPage));
-        }
-    }
 }

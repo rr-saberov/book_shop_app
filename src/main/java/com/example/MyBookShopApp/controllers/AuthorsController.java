@@ -20,10 +20,12 @@ import java.util.Map;
 public class AuthorsController {
 
     private final AuthorService authorService;
+    private final BookService bookService;
 
     @Autowired
-    public AuthorsController(AuthorService authorService) {
+    public AuthorsController(AuthorService authorService, BookService bookService) {
         this.authorService = authorService;
+        this.bookService = bookService;
     }
 
     @ModelAttribute("authorsMap")
@@ -33,7 +35,7 @@ public class AuthorsController {
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
-        return authorService.getBooksByAuthor();
+        return bookService.getBooksByAuthor();
     }
 
     @GetMapping("/authors")
@@ -52,7 +54,7 @@ public class AuthorsController {
                                    Model model) {
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResults",
-                authorService.getBooksPageByAuthor(searchWordDto.getExample(), 0, 5).getContent());
+                bookService.getBooksPageByAuthor(searchWordDto.getExample(), 0, 5).getContent());
         return "/books/author";
     }
 }

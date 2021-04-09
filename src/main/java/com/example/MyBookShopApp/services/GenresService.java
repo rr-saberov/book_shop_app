@@ -26,16 +26,5 @@ public class GenresService {
         return genresRepository.findAll();
     }
 
-    public List<Book> getBooksByGenre() {
-        return genresRepository.getBooksOrderByGenre();
-    }
 
-    public Page<Book> getBooksPageByGenre(String genre, Integer page, Integer limit) {
-        Pageable nextPage = PageRequest.of(page, limit);
-        if (genre.isEmpty()) {
-            return new PageImpl<>(genresRepository.getBooksOrderByGenre());
-        } else {
-            return new PageImpl<>(genresRepository.getBooksByGenreName(genre, nextPage));
-        }
-    }
 }

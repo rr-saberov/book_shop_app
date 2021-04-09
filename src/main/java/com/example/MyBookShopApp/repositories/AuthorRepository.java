@@ -13,21 +13,5 @@ import java.util.List;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Author au " +
-            "ORDER BY au.lastName")
-    List<Book> getBooksOrderByAuthor(Pageable nextPage);
 
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Author au " +
-            "WHERE au.lastName = :authorName")
-    List<Book> getBooksByAuthorLastName(@Param("authorName") String authorName, Pageable nextPage);
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Author  au " +
-            "ORDER BY au.lastName")
-    List<Book> getBooksOrderByAuthor();
 }

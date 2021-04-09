@@ -13,15 +13,6 @@ import java.util.List;
 @Repository
 public interface GenresRepository extends JpaRepository<Genres, Integer> {
 
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "ORDER BY b.genre.name")
-    List<Book> getBooksOrderByGenre();
 
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Genres ge " +
-            "WHERE ge.name = :genreName")
-    List<Book> getBooksByGenreName(@Param("genreName") String genre, Pageable nextPage);
 
 }
