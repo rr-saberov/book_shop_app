@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,8 +17,7 @@ public class Tag {
     private int id;
     private String tagName;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id",referencedColumnName = "id")
-    private Book book;
+    @OneToMany(mappedBy = "tag")
+    private List<Book> bookList;
 
 }

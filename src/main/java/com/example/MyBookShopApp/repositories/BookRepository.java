@@ -67,6 +67,22 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "ORDER BY b.author.lastName")
     List<Book> getBooksOrderByAuthor();
 
+    @Query("SELECT b " +
+            "FROM Book b " +
+            "ORDER BY b.tag.tagName")
+    List<Book> getBooksOrderByTag();
+
+    @Query("SELECT b " +
+            "FROM Book b " +
+            "ORDER BY b.tag.tagName")
+    List<Book> getBooksPageOrderByTag(Pageable nextPage);
+
+
+    @Query("SELECT b " +
+            "FROM Book b " +
+            "WHERE b.tag.tagName = :tagName")
+    List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);
+
 /*    @Query("SELECT b.title " +
             "FROM Book b " +
             "JOIN Author au " +

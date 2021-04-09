@@ -64,7 +64,8 @@ public class Book {
     @ApiModelProperty("book author name")
     private Author author;
 
-    @OneToMany(mappedBy = "book")
-    private List<Tag> tagList;
+    @ManyToOne
+    @JoinColumn(name = "tags_id",referencedColumnName = "id")
+    private Tag tag;
 
 }

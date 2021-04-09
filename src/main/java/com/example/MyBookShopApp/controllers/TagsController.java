@@ -39,7 +39,7 @@ public class TagsController {
         return tagService.getBooksOrderByTag();
     }
 
-    @GetMapping
+    @GetMapping("tags/index")
     public String tagsPage() {
         return "tags/index";
     }
