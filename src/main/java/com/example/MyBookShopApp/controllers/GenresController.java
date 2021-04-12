@@ -7,10 +7,7 @@ import com.example.MyBookShopApp.services.GenresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,20 +24,15 @@ public class GenresController {
         this.bookService = bookService;
     }
 
-    @ModelAttribute("searchWordDto")
-    public SearchWordDto searchWordDto() {
-        return new SearchWordDto();
-    }
-
-    @ModelAttribute("searchResults")
-    public List<Book> searchResults() {
-        return new ArrayList<>();
-    }
-
     @ModelAttribute("booksByGenre")
     public List<Book> booksByGenre() {
         return bookService.getBooksByGenre();
     }
+
+//    @ModelAttribute("booksWithGenre")
+//    public List<Book> getBooksWithGenre() {
+//        return bookService.getBooksWithGenre("");
+//    }
 
     @GetMapping("/genres")
     public String genresPage() {

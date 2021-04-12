@@ -45,7 +45,12 @@ public class AuthorsController {
 
     @GetMapping("/authors/slug")
     public String authorsSlugPage() {
-        return "genres/slug";
+        return "authors/slug";
+    }
+
+    @GetMapping("/books/author")
+    public String authorsBooks() {
+        return "books/author";
     }
 
     @ResponseBody

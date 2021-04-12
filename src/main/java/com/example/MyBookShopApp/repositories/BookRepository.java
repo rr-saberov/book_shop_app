@@ -23,8 +23,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> getBooksByPriceBetween(Integer min, Integer max);
 
-    List<Book> getBooksByPriceOldIs(Integer price);
-
     List<Book> getBookByTitleContaining(String bookTitle, Pageable nextPage);
 
     @Query("FROM Book ORDER BY pubDate")
@@ -39,17 +37,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT * FROM books " +
             "WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "ORDER BY b.genre.name")
-    List<Book> getBooksOrderByGenre();
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Genres ge " +
-            "WHERE ge.name = :genreName")
-    List<Book> getBooksByGenreName(@Param("genreName") String genre, Pageable nextPage);
 
     @Query("SELECT b " +
             "FROM Book b " +
@@ -69,6 +56,23 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query("SELECT b " +
             "FROM Book b " +
+            "ORDER BY b.genre.name")
+    List<Book> getBooksOrderByGenre();
+
+    @Query("SELECT b " +
+            "FROM Book b " +
+            "JOIN Genres ge " +
+            "WHERE ge.name = :genreName")
+    List<Book> getBookWithGenre(@Param("genreName") String genre);
+
+    @Query("SELECT b " +
+            "FROM Book b " +
+            "JOIN Genres ge " +
+            "WHERE ge.name = :genreName")
+    List<Book> getBookPageByGenreName(@Param("genreName") String genre, Pageable nextPage);
+
+    @Query("SELECT b " +
+            "FROM Book b " +
             "ORDER BY b.tag.tagName")
     List<Book> getBooksOrderByTag();
 
@@ -77,47 +81,9 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "ORDER BY b.tag.tagName")
     List<Book> getBooksPageOrderByTag(Pageable nextPage);
 
-
     @Query("SELECT b " +
             "FROM Book b " +
             "WHERE b.tag.tagName = :tagName")
     List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);
-
-/*    @Query("SELECT b.title " +
-            "FROM Book b " +
-            "JOIN Author au " +
-            "ORDER BY au.lastName")
-    List<Book> getBooksOrderByAuthor(Pageable nextPage);*/
-
-/*    @Query("SELECT b.title " +
-            "FROM Book b " +
-            "JOIN Genres gen " +
-            "ORDER BY gen.name")
-    List<Book> getBooksOrderByGenre(Pageable nextPage);*/
-
-/*    @Query("SELECT b.title " +
-            "FROM Book b " +
-            "JOIN Tag tag " +
-            "ORDER BY tag.tagName")
-    List<Book> getBooksOrderByTag(Pageable nextPage);*/
-
-/*    @Query("SELECT b.title " +
-            "FROM Book b " +
-            "JOIN Author au " +
-            "WHERE au.lastName = :authorName")
-    List<Book> getBooksByAuthorLastName(@Param("authorName") String authorName, Pageable nextPage);*/
-
-/*    @Query("SELECT b.title " +
-            "FROM Book b " +
-            "JOIN Genres ge "
-            + "WHERE ge.name = :genreName")
-    List<Book> getBooksByGenreName(@Param("genreName") String genre, Pageable nextPage);*/
-
-/*    @Query("SELECT b.title " +
-            "FROM Book b " +
-            "JOIN Tag tag " +
-            "WHERE tag.tagName = :tagName")
-    List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);*/
-
 
 }
