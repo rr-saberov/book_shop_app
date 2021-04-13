@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.entities.SearchWordDto;
+import com.example.MyBookShopApp.services.BookService;
 import com.example.MyBookShopApp.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,12 @@ import java.util.List;
 public class TagsController {
 
     private final TagService tagService;
+    private final BookService bookService;
 
     @Autowired
-    public TagsController(TagService tagService) {
+    public TagsController(TagService tagService, BookService bookService) {
         this.tagService = tagService;
+        this.bookService = bookService;
     }
 
     @ModelAttribute("searchWordDto")
@@ -36,11 +39,12 @@ public class TagsController {
 
     @ModelAttribute("booksByTag")
     public List<Book> booksByTag() {
-        return tagService.getBooksOrderByTag();
+        return bookService.getBooksOrderByTag();
     }
 
-    @GetMapping("tags/index")
-    public String tagsPage() {
+    @GetMapping("tags/index/{tag}")
+    public String tagsPage(@PathVariable String tag, Model model) {
+        model.addAttribute("searchWordDto", bookService.getBooksByTag(tag));
         return "tags/index";
     }
 

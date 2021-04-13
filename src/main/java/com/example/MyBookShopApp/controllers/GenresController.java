@@ -7,9 +7,10 @@ import com.example.MyBookShopApp.services.GenresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,31 +27,22 @@ public class GenresController {
 
     @ModelAttribute("booksByGenre")
     public List<Book> booksByGenre() {
-        return bookService.getBooksByGenre();
+        return bookService.getBooksOrderByGenre();
     }
 
-//    @ModelAttribute("booksWithGenre")
-//    public List<Book> getBooksWithGenre() {
-//        return bookService.getBooksWithGenre("");
-//    }
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
+    }
 
     @GetMapping("/genres")
     public String genresPage() {
         return "genres/index";
     }
 
-    @GetMapping("/genres/slug")
-    public String genresSlugPage() {
+    @GetMapping("/genres/slug/{genre}")
+    public String genresSlugPage(@PathVariable String genre, Model model) {
+        model.addAttribute("booksByGenre", bookService.getBooksByGenre(genre));
         return "genres/slug";
-    }
-
-    @ResponseBody
-    @GetMapping("/books/byGenre/{genre}")
-    public String getBooksByGenre(@PathVariable(value = "genre", required = false) SearchWordDto searchWordDto,
-                                  Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService.getBooksPageByGenre(searchWordDto.getExample(), 0, 5).getContent());
-        return "/genres/index";
     }
 }

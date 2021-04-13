@@ -1,12 +1,8 @@
 package com.example.MyBookShopApp.services;
 
 import com.example.MyBookShopApp.entities.Author;
-import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

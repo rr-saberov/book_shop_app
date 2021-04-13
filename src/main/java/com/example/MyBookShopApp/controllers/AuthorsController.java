@@ -35,7 +35,12 @@ public class AuthorsController {
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
-        return bookService.getBooksByAuthor();
+        return bookService.getBooksOrderByAuthor();
+    }
+
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
     }
 
     @GetMapping("/authors")
@@ -43,23 +48,14 @@ public class AuthorsController {
         return "authors/index";
     }
 
-    @GetMapping("/authors/slug")
-    public String authorsSlugPage() {
+    @GetMapping("/authors/slug/{author}")
+    public String authorsSlugPage(@PathVariable String author, Model model) {
+        model.addAttribute("searchWordDto", bookService.getBooksByAuthor(author));
         return "authors/slug";
     }
 
     @GetMapping("/books/author")
     public String authorsBooks() {
         return "books/author";
-    }
-
-    @ResponseBody
-    @GetMapping("/books/authors/{author}")
-    public String getBooksByAuthor(@PathVariable(value = "author", required = false) SearchWordDto searchWordDto,
-                                   Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService.getBooksPageByAuthor(searchWordDto.getExample(), 0, 5).getContent());
-        return "/books/author";
     }
 }

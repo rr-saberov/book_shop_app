@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 
 import java.util.logging.Logger;
 
-//@Configuration
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
     TestEntityCrudRepository testEntityCrudRepository;
@@ -47,7 +46,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName())
                 .info(bookRepository.findBooksByAuthor_FirstName("Jelene").toString());
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName())
-                .info(bookRepository.customFindAllBooks().toString());
+                .info(bookRepository.findAll().toString());
     }
 
     private void deleteTestEntityById(Long id) {

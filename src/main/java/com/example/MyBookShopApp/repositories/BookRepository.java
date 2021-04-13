@@ -14,9 +14,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findBooksByAuthor_FirstName(String name);
 
-    @Query("FROM Book")
-    List<Book> customFindAllBooks();
-
     List<Book> getBooksByAuthorFirstNameContaining(String authorFirstName);
 
     List<Book> getBooksByTitleContaining(String bookTitle);
@@ -24,6 +21,16 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getBooksByPriceBetween(Integer min, Integer max);
 
     List<Book> getBookByTitleContaining(String bookTitle, Pageable nextPage);
+
+    List<Book> findAllByOrderByAuthor();
+
+    List<Book> findAllByOrderByTag();
+
+    List<Book> findAllByTagTagName(String tag);
+
+    List<Book> findAllByOrderByGenreName();
+
+    List<Book> findAllByGenreName(String genre);
 
     @Query("FROM Book ORDER BY pubDate")
     List<Book> findBooksByPubDate(Pageable pageable);
@@ -51,19 +58,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query("SELECT b " +
             "FROM Book b " +
-            "ORDER BY b.author.lastName")
-    List<Book> getBooksOrderByAuthor();
-
-    @Query("SELECT b " +
-            "FROM Book b " +
             "ORDER BY b.genre.name")
     List<Book> getBooksOrderByGenre();
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Genres ge " +
-            "WHERE ge.name = :genreName")
-    List<Book> getBookWithGenre(@Param("genreName") String genre);
 
     @Query("SELECT b " +
             "FROM Book b " +
