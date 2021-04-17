@@ -82,4 +82,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "WHERE b.tag.tagName = :tagName")
     List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);
 
+    Book findBookBySlug(String slug);
+
 }

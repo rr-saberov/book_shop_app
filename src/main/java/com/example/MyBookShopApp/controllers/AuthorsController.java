@@ -38,6 +38,11 @@ public class AuthorsController {
         return bookService.getBooksOrderByAuthor();
     }
 
+    @ModelAttribute("recommendedAuthors")
+    public List<Author> recommendedAuthors() {
+        return authorService.getAuthors();
+    }
+
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto() {
         return new SearchWordDto();
@@ -54,8 +59,9 @@ public class AuthorsController {
         return "authors/slug";
     }
 
-    @GetMapping("/books/author")
-    public String authorsBooks() {
+    @GetMapping("/books/author/{author}")
+    public String authorsBooks(@PathVariable String author, Model model) {
+        model.addAttribute("searchWordDto", bookService.getBooksByAuthor(author));
         return "books/author";
     }
 }

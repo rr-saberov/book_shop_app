@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -49,7 +50,12 @@ public class Book {
     @Column(name = "discount")
     @JsonProperty("discount")
     @ApiModelProperty("discount value")
-    private Integer price;
+    private Double price;
+
+    @JsonProperty
+    public Integer discountPrice() {
+        return priceOld - Math.toIntExact(Math.round(price * priceOld));
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -63,6 +69,11 @@ public class Book {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     @ApiModelProperty("book author name")
     private Author author;
+
+    @JsonGetter("authors")
+    public String authorsFullName() {
+        return author.toString();
+    }
 
     @ManyToOne
     @JoinColumn(name = "tags_id",referencedColumnName = "id")

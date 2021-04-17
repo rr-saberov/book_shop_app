@@ -23,4 +23,8 @@ public class AuthorService {
         return authorRepository.findAll().stream()
                 .collect(Collectors.groupingBy((Author a) -> a.getLastName().substring(0, 1)));
     }
+
+    public List<Author> getAuthors() {
+        return authorRepository.findAll();
+    }
 }
