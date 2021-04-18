@@ -27,3 +27,6 @@ spring:
 
 upload:
   path: /home/ruslan/Documents/upload
+
+download:
+  path: /home/ruslan/Documents/Projects/book-files

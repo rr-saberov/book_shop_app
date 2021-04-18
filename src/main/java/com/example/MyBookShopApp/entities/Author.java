@@ -25,6 +25,8 @@ public class Author {
     private String firstName;
     @ApiModelProperty(value = "last name of author", example = "Wick", position = 3)
     private String lastName;
+    @Column(columnDefinition = "TEXT")
+    private String authorHistory;
 
     @JsonIgnore
     @OneToMany(mappedBy = "author")

@@ -59,32 +59,32 @@ p.error-browser
                 </li>
                 <li class="breadcrumbs-item"><a href="/authors/index" th:href="@{/authors}">Авторы</a>
                 </li>
-                <li class="breadcrumbs-item breadcrumbs-item_current"><span>Борис Васильевич Бедный</span>
+                <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="${author}">Борис Васильевич Бедный</span>
                 </li>
             </ul>
-            <h1 class="Middle-title" th:text="${author.toString()}">Борис Васильевич Бедный
+            <h1 class="Middle-title" th:text="${author}">Борис Васильевич Бедный
             </h1>
             <article class="Article">
                 <div class="sdf">
                 </div>
                 <div class="Spoiler">
-                    <div class="Spoiler-visible">
+                    <div class="Spoiler-visible"><!--th:each="authors : ${recommendedAuthors}"-->
                         <div class="pict pict_left"><img src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
                         </div>
                         <div>
-                            <h2>Биография
+                            <h2 th:text="#{middlebar.biography}">Биография
                             </h2>
-                            <p>Борис Бедный родился в семье учителя в 1916 году в станице Ярославская Краснодарского
+                            <p> <!--th:text="${authors.authorHistory}"-->Борис Бедный родился в семье учителя в 1916 году в станице Ярославская Краснодарского
                                 края. Окончил Майкопский лесной техникум и был послан учиться в Ленинградскую
                                 лесотехническую академию. Стал специалистом по сплаву леса и приехал в Республику Коми,
                                 работать на сплавных предприятиях.
                             </p>
-                            <p>В октябре 1941 года Борис пошёл на фронт, а в августе 1942 года попал в плен, и находился
+<!--                            <p>В октябре 1941 года Борис пошёл на фронт, а в августе 1942 года попал в плен, и находился
                                 там до апреля 1945 года.
-                            </p>
+                            </p>-->
                         </div>
                     </div>
-                    <div class="Spoiler-hide">
+       <!--             <div class="Spoiler-hide">
                         <p>"Писать он начал до войны, в академии,- рассказал о нем в предисловии к книге "Первое дело"
                             поэт К.Ваншенкин.- Был участником литературных кружков и студий. Но всерьез вернулся к этому
                             в сорок шестом, в далекой сплавконторе, на Трехозерной запани. Печатался в Коми
@@ -119,7 +119,7 @@ p.error-browser
                         <p>Борис Васильевич Бедный умер в 1976 г. в Москве. Шел по улице, почувствовал себя плохо.
                             Острый обширный инфаркт, до больницы не довезли…
                         </p>
-                    </div>
+                    </div>-->
                     <div class="Spoiler-footer">
                         <button class="Spoiler-trigger btn btn_primary btn_nr" type="button" data-showtext="Свернуть"
                                 data-hidetext="Показать полностью">

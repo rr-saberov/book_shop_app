@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class Book {
 
     @ApiModelProperty("identity sequence of characters")
     private String slug;
+
     @ApiModelProperty("book title")
     private String title;
+
     @ApiModelProperty("book image URL")
     private String image;
 
@@ -56,6 +59,9 @@ public class Book {
     public Integer discountPrice() {
         return priceOld - Math.toIntExact(Math.round(price * priceOld));
     }
+
+    @OneToMany(mappedBy = "book")
+    private List<BookFile> bookFileList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
