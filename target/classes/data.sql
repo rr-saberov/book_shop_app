@@ -1058,6 +1058,6 @@ insert into books (id, pub_date, is_bestseller, slug, title, image, description,
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id) values (1000, '2019-07-11', 0, 'book-nmq-544', 'State Property', 'http://dummyimage.com/250x250.bmp/ff4444/ffffff', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 148, 0.36, 1);
 
 
-insert into book_file (id, hash, path, type_id, book_id) values (1, 'fdjsafsdak|343', '/Kon-Tiki.pdf',  1, 2);
-insert into book_file (id, hash, path, type_id, book_id) values (2, 'ferghgfd|3235', '/Kon-Tiki.epup', 2, 2);
-insert into book_file (id, hash, path, type_id, book_id) values (3, 'sdsfer|657677', '/Kon-Tiki.fb2',  3, 2);
+insert into book_file (id, hash, path, type_id, book_id) values (1, 'fdjsafsdak343', '/Kon-Tiki.pdf',  1, 2);
+insert into book_file (id, hash, path, type_id, book_id) values (2, 'ferghgfd3235', '/Kon-Tiki.epup', 2, 2);
+insert into book_file (id, hash, path, type_id, book_id) values (3, 'sdsfer657677', '/Kon-Tiki.fb2',  3, 2);

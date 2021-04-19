@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -55,6 +54,7 @@ public class AuthorsController {
 
     @GetMapping("/authors/slug/{author}")
     public String authorsSlugPage(@PathVariable String author, Model model) {
+        model.addAttribute("author", authorService.getAuthorByName(author));
         model.addAttribute("searchWordDto", bookService.getBooksByAuthor(author));
         return "authors/slug";
     }

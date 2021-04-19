@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.repositories;
 
 import com.example.MyBookShopApp.entities.Author;
 import com.example.MyBookShopApp.entities.Book;
+import org.hibernate.sql.Select;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,5 +14,8 @@ import java.util.List;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
-
+    @Query("SELECT a " +
+            "FROM Author a " +
+            "WHERE a.firstName = :name")
+    Author getAuthorByFirstName(@Param("name") String name);
 }
