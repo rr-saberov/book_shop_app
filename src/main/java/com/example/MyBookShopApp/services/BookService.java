@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.services;
 
 import com.example.MyBookShopApp.entities.Book;
+import com.example.MyBookShopApp.errs.BookstoreApiWrongParameterException;
 import com.example.MyBookShopApp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,11 +23,20 @@ public class BookService {
     }
 
     public List<Book> getBooksByAuthor(String authorName) {
-        return bookRepository.getBooksByAuthorFirstNameContaining(authorName);
+        return bookRepository.getBooksByAuthorLastNameContaining(authorName);
     }
 
-    public List<Book> getBooksByTitle(String title) {
-        return bookRepository.getBooksByTitleContaining(title);
+    public List<Book> getBooksByTitle(String title) throws BookstoreApiWrongParameterException {
+        if (title.equals("") || title.length() <= 1) {
+            throw new BookstoreApiWrongParameterException("Wrong values passed to one or more parameters");
+        } else {
+            List<Book> data = bookRepository.getBookByTitleContaining(title);
+            if (data.size() > 0) {
+                return data;
+            } else {
+                throw new BookstoreApiWrongParameterException("No data found with specified parameters...");
+            }
+        }
     }
 
     public List<Book> getBooksWithPriceBetween(Integer min, Integer max) {
@@ -80,7 +90,8 @@ public class BookService {
 
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer page, Integer limit) {
         Pageable nextPage = PageRequest.of(page, limit);
-        return new PageImpl<>(bookRepository.getBookByTitleContaining(searchWord, nextPage));
+        Page<Book> books = bookRepository.getBookPageByTitleContaining(searchWord, nextPage);
+        return books;
     }
 
     public Page<Book> getBooksPageByAuthor(String authorName, Integer page, Integer limit) {

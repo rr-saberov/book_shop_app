@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.entities.BooksPageDto;
 import com.example.MyBookShopApp.entities.SearchWordDto;
+import com.example.MyBookShopApp.errs.EmptySearchException;
 import com.example.MyBookShopApp.services.BookService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,11 +70,15 @@ public class MainPageController {
 
     @GetMapping(value = {"/search", "/search/{searchWord}"})
     public String getSearchResults(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
-                                   Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
-        return "/search/index";
+                                   Model model) throws EmptySearchException {
+        if (searchWordDto != null) {
+            model.addAttribute("searchWordDto", searchWordDto);
+            model.addAttribute("searchResults",
+                    bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
+            return "/search/index";
+        } else {
+            throw new EmptySearchException("Search impossible for null");
+        }
     }
 
     @GetMapping("/search/page/{searchWord}")

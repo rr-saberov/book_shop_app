@@ -149,12 +149,12 @@ p.error-browser
                 <div class="ProductCard">
                     <div class="ProductCard-look">
                         <form id="imgForm" method="POST" enctype="multipart/form-data" action="#"
-                              th:action="${'/books/' + slugBook.slug + '/img/save'}">
+                              th:action="${'/books/' + slugBook.slug + '/img/save'}" >
                             <div class="ProductCard-photo" id="uploadButton"><img th:src="${slugBook.image}"
                                                                                   src="/assets/img/content/main/card.jpg"
                                                                                   alt="card.jpg"/>
                             </div>
-                            <input type="file" name="file" id="dialog" style="display: none">
+                            <input type="file" name="file" id="dialog" style="display: none" accept="image/*">
                         </form>
                     </div>
                     <div class="ProductCard-desc">

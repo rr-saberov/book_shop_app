@@ -61,6 +61,7 @@ public class AuthorsController {
 
     @GetMapping("/books/author/{author}")
     public String authorsBooks(@PathVariable String author, Model model) {
+        model.addAttribute("author", authorService.getAuthorByName(author));
         model.addAttribute("searchWordDto", bookService.getBooksByAuthor(author));
         return "books/author";
     }
