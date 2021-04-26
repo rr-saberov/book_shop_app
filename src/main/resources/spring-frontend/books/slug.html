@@ -118,15 +118,21 @@ p.error-browser
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
-                    <li class="menu-item"><a class="menu-link" href="/index.html">Главная</a>
+                    <li class="menu-item"><a class="menu-link" href="/index.html" th:href="@{/}"
+                                             th:text="#{topbar.main}">Главная</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/genres/index.html">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/genres/index.html" th:href="@{/genres}"
+                                             th:text="#{topbar.genres}">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html"
+                                             th:href="@{/recent}" th:text="#{topbar.recent}">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:href="@{/popular}"
+                                             th:text="#{topbar.popular}">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/authors/index.html">Авторы</a>
+                    <li class="menu-item"><a class="menu-link" href="/authors/index.html"
+                                             th:href="@{/authors}"
+                                             th:text="#{topbar.authors}">Авторы</a>
                     </li>
                 </ul>
             </nav>
@@ -137,9 +143,11 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}"
+                                                th:text="#{topbar.main}">Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html">Книги</a>
+                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}"
+                                                th:text="#{topbar.genres}">Книги</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current">
                     <span th:text="${slugBook.title}">Мара и морок</span>
@@ -149,7 +157,7 @@ p.error-browser
                 <div class="ProductCard">
                     <div class="ProductCard-look">
                         <form id="imgForm" method="POST" enctype="multipart/form-data" action="#"
-                              th:action="${'/books/' + slugBook.slug + '/img/save'}" >
+                              th:action="${'/books/' + slugBook.slug + '/img/save'}">
                             <div class="ProductCard-photo" id="uploadButton"><img th:src="${slugBook.image}"
                                                                                   src="/assets/img/content/main/card.jpg"
                                                                                   alt="card.jpg"/>
@@ -519,7 +527,8 @@ p.error-browser
                             </div>
                             <div class="ProductCard-cartElement">
                                 <button class="btn btn_primary btn_outline" data-sendstatus="CART" data-bookid="[1111]"
-                                        th:attr="data-bookid = ${slugBook.slug}" data-btntype="check" data-btnradio="buyblock" data-check="false"
+                                        th:attr="data-bookid = ${slugBook.slug}" data-btntype="check"
+                                        data-btnradio="buyblock" data-check="false"
                                         data-alttext="В корзине"><span class="btn-icon"><img
                                         src="/assets/img/icons/shopping-basket.svg"
                                         alt="shopping-basket.svg"/></span><span class="btn-content">Купить</span>

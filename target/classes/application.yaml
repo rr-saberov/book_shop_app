@@ -13,9 +13,9 @@ spring:
   thymeleaf:
     prefix: classpath:/spring-frontend/
   datasource:
-    url: jdbc:postgresql://localhost:5432/bookstore
+    url: jdbc:postgresql://localhost:5432/bookshop
     username: postgres
-    password: newuserR-1
+    password: postgres
     driver-class-name: org.postgresql.Driver
     data: classpath:data.sql
     initialization-mode: always

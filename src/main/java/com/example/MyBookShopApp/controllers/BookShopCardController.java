@@ -31,15 +31,15 @@ public class BookShopCardController {
     }
 
     @GetMapping("/cart")
-    public String handleCartRequest(@CookieValue(value = "cartContents", required = false) String cartContenst,
+    public String handleCartRequest(@CookieValue(value = "cartContents", required = false) String cartContents,
                                     Model model) {
-        if (cartContenst == null || cartContenst.equals("")) {
+        if (cartContents == null || cartContents.equals("")) {
             model.addAttribute("isCartEmpty", true);
         } else {
             model.addAttribute("isCartEmpty", false);
-            cartContenst = cartContenst.startsWith("/") ? cartContenst.substring(1) : cartContenst;
-            cartContenst = cartContenst.endsWith("/") ? cartContenst.substring(0, cartContenst.length() - 1) : cartContenst;
-            String[] cookieSlugs = cartContenst.split("/");
+            cartContents = cartContents.startsWith("/") ? cartContents.substring(1) : cartContents;
+            cartContents = cartContents.endsWith("/") ? cartContents.substring(0, cartContents.length() - 1) : cartContents;
+            String[] cookieSlugs = cartContents.split("/");
             List<Book> booksFromCookieSlug = bookRepository.findBooksBySlugIn(cookieSlugs);
             model.addAttribute("bookCart", booksFromCookieSlug);
         }

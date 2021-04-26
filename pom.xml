@@ -81,12 +81,9 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-core</artifactId>
-			<version>3.0.0-SNAPSHOT</version>
+			<version>3.0.0</version>
 		</dependency>
-
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -103,5 +100,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
