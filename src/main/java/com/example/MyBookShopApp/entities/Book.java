@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,9 +16,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "books")
-@NoArgsConstructor
 @ApiModel("entity representing a book")
-public class Book {
+public class Book extends RepresentationModel<Book> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,6 +60,11 @@ public class Book {
         return priceOld - Math.toIntExact(Math.round(price * priceOld));
     }
 
+    @JsonGetter("authors")
+    public String authorsFullName() {
+        return author.toString();
+    }
+
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 
@@ -75,11 +80,6 @@ public class Book {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     @ApiModelProperty("book author name")
     private Author author;
-
-    @JsonGetter("authors")
-    public String authorsFullName() {
-        return author.toString();
-    }
 
     @ManyToOne
     @JoinColumn(name = "tags_id",referencedColumnName = "id")

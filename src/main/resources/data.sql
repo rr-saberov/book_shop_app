@@ -47,7 +47,7 @@ insert into authors (id, first_name, last_name, author_history) values (46, 'Sal
 insert into authors (id, first_name, last_name, author_history) values (47, 'Amabel', 'Albinson', 'Universität Potsdam');
 insert into authors (id, first_name, last_name, author_history) values (48, 'Merralee', 'Kobus', 'Ecole Nationale Supérieure Agronomique de Toulouse');
 insert into authors (id, first_name, last_name, author_history) values (49, 'Jayne', 'Ferreiro', 'Northern Illinois University');
-insert into authors (id, first_name, last_name, author_history) values (50, 'Miguelita', 'Wallice', 'Open Polytechnic ');
+insert into authors (id, first_name, last_name, author_history) values (50, 'Miguelita' , 'Wallice', 'Open Polytechnic ');
 insert into authors (id, first_name, last_name, author_history) values (51, 'Griffin', 'Upton', 'International Banking Institute, St. Petersburg');
 insert into authors (id, first_name, last_name, author_history) values (52, 'Wesley', 'Hurt', 'Bennington College');
 insert into authors (id, first_name, last_name, author_history) values (53, 'Ella', 'Drain', 'National Taiwan Normal University');

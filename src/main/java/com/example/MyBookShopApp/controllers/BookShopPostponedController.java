@@ -63,24 +63,4 @@ public class BookShopPostponedController {
         }
         return "redirect:/books/postponed";
     }
-
-/*    @PostMapping("/changeBookStatus/{slug}")
-    public String handleChangeBookStatus(@PathVariable("slug") String slug,
-                                         @CookieValue(name = "postponedContents", required = false) String postponedContents,
-                                         HttpServletResponse response, Model model) {
-        if (postponedContents == null || postponedContents.equals("")) {
-            Cookie cookie = new Cookie("postponedContents", slug);
-            cookie.setPath("/books");
-            response.addCookie(cookie);
-            model.addAttribute("isPostponedEmpty", false);
-        } else if (!postponedContents.contains(slug)) {
-            StringJoiner stringJoiner = new StringJoiner("/");
-            stringJoiner.add(postponedContents).add("slug");
-            Cookie cookie = new Cookie("postponedContents", stringJoiner.toString());
-            cookie.setPath("/books");
-            response.addCookie(cookie);
-            model.addAttribute("isPostponedEmpty", true);
-        }
-        return "redirect:/books/" + slug;
-    }*/
 }

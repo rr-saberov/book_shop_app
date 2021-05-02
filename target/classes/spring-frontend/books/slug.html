@@ -83,7 +83,7 @@ p.error-browser
                                 </g>
                             </g>
                         </svg>
-                        <span class="CartBlock-amount">0</span></a><a class="CartBlock-block" href="/cart.html">
+                        <span class="CartBlock-amount">0</span></a><a class="CartBlock-block" href="/cart.html" th:href="@{/books/cart}">
                         <svg class="CartBlock-img" xmlns="http://www.w3.org/2000/svg" width="30" height="23"
                              viewBox="0 0 30 23">
                             <g>
@@ -143,9 +143,11 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}"
+                                                th:text="#{topbar.main}">Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html">Книги</a>
+                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}"
+                                                th:text="#{topbar.genres}">Книги</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current">
                     <span th:text="${slugBook.title}">Мара и морок</span>
@@ -517,6 +519,7 @@ p.error-browser
                             <!--    +Amount._product-->
                             <div class="ProductCard-cartElement">
                                 <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1111]"
+                                        th:attr="data-bookid = ${slugBook.slug}"
                                         data-btntype="check" data-btnradio="buyblock" data-check="false"
                                         data-alttext="Отложена"><span class="btn-icon"><img
                                         src="/assets/img/icons/heart.svg" alt="heart.svg"/></span><span

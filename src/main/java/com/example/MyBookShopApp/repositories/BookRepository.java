@@ -22,7 +22,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> getBooksByTitleContaining(String bookTitle);
 
-    List<Book> getBooksByPriceBetween(Integer min, Integer max);
+    List<Book> getBooksByPriceBetween(Double min, Double max);
 
     List<Book> getBookByTitleContaining(String bookTitle);
 
@@ -48,7 +48,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getBestsellersPage(Pageable pageable);
 
     @Query(value = "SELECT * FROM books " +
-            "WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
+            "WHERE price = (SELECT MAX(price) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
 
     @Query("SELECT b " +

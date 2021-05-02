@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping("/books/")
 public class BooksController {
 
     private final BookRepository bookRepository;
@@ -30,14 +30,14 @@ public class BooksController {
         this.storage = storage;
     }
 
-    @GetMapping("/{slug}")
+    @GetMapping("{slug}")
     public String bookPage(@PathVariable String slug, Model model) {
         Book book = bookRepository.findBookBySlug(slug);
         model.addAttribute("slugBook", book);
         return "/books/slug";
     }
 
-    @PostMapping("/{slug}/img/save")
+    @PostMapping("{slug}/img/save")
     public String saveNewBookImage(@RequestParam MultipartFile file,
                                    @PathVariable String slug) throws IOException {
         String savePath = storage.saveNewBookImage(file, slug);
@@ -47,7 +47,7 @@ public class BooksController {
         return ("redirect:/books/" + slug);
     }
 
-    @GetMapping("/download/{hash}")
+    @GetMapping("download/{hash}")
     public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash") String hash) throws IOException {
         Path path = storage.getBookFilePath(hash);
         Logger.getLogger(this.getClass().getSimpleName()).info("book file path: " + path);

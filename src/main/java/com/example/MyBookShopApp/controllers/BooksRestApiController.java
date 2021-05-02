@@ -27,7 +27,7 @@ public class BooksRestApiController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/books/by-author")
+    @GetMapping(value = "/books/by-author", produces = { "application/hal+json" })
     @ApiOperation("operation to get books by author")
     public ResponseEntity<List<Book>> booksByAuthor(@RequestParam("author") String authorName) {
         return ResponseEntity.ok(bookService.getBooksByAuthor(authorName));
@@ -47,19 +47,19 @@ public class BooksRestApiController {
     }
 
     @GetMapping("/books/by-price-range")
-    @ApiOperation("operation to get books with price")
-    public ResponseEntity<List<Book>> priceRangeBooks(@RequestParam Integer min, @RequestParam Integer max) {
+    @ApiOperation("operation to get books by price range from min to max")
+    public ResponseEntity<List<Book>> priceRangeBooks(@RequestParam Double min, @RequestParam Double max) {
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
     }
 
-    @GetMapping("/books/with-max-discount")
-    @ApiOperation("operation to get books by price range from min to max")
+    @GetMapping("/books/with-max-price")
+    @ApiOperation("operation to get book with max price")
     public ResponseEntity<List<Book>> maxPriceBooks() {
-        return ResponseEntity.ok(bookService.getBooksWithMaxDiscount());
+        return ResponseEntity.ok(bookService.getBooksWithMaxPrice());
     }
 
-    @ApiOperation("operation to get bestsellers")
     @GetMapping("/books/bestsellers")
+    @ApiOperation("operation to get bestsellers")
     public ResponseEntity<List<Book>> bestSellerBooks() {
         return ResponseEntity.ok(bookService.getBestsellers().getContent());
     }

@@ -39,7 +39,7 @@ public class BookService {
         }
     }
 
-    public List<Book> getBooksWithPriceBetween(Integer min, Integer max) {
+    public List<Book> getBooksWithPriceBetween(Double min, Double max) {
         return bookRepository.getBooksByPriceBetween(min, max);
     }
 
@@ -51,7 +51,7 @@ public class BookService {
         return bookRepository.findAllByTagTagName(tag);
     }
 
-    public List<Book> getBooksWithMaxDiscount() {
+    public List<Book> getBooksWithMaxPrice() {
         return bookRepository.getBooksWithMaxDiscount();
     }
 

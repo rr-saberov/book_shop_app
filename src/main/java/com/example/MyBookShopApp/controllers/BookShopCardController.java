@@ -47,24 +47,6 @@ public class BookShopCardController {
         return "cart";
     }
 
-    @PostMapping("/changeBookStatus/cart/remove/{slug}")
-    public String handleRemoveBookFromCartRequest(@PathVariable("slug") String slug, @CookieValue(name =
-            "cartContents", required = false) String cartContents, HttpServletResponse response, Model model) {
-
-        if (cartContents != null && !cartContents.equals("")) {
-            List<String> cookieBooks = new ArrayList<>(Arrays.asList(cartContents.split("/")));
-            cookieBooks.remove(slug);
-            Cookie cookie = new Cookie("cartContents", String.join("/", cookieBooks));
-            cookie.setPath("/books");
-            response.addCookie(cookie);
-            model.addAttribute("isCartEmpty", false);
-        } else {
-            model.addAttribute("isCartEmpty", true);
-        }
-
-        return "redirect:/books/cart";
-    }
-
     @PostMapping("/changeBookStatus/{slug}")
     public String handleChangeBookStatus(@PathVariable("slug") String slug, @CookieValue(name = "cartContents",
             required = false) String cartContents, HttpServletResponse response, Model model) {
@@ -82,7 +64,24 @@ public class BookShopCardController {
             response.addCookie(cookie);
             model.addAttribute("isCartEmpty", false);
         }
-
         return "redirect:/books/" + slug;
+    }
+
+    @PostMapping("/changeBookStatus/cart/remove/{slug}")
+    public String handleRemoveBookFromCartRequest(@PathVariable("slug") String slug, @CookieValue(name =
+            "cartContents", required = false) String cartContents, HttpServletResponse response, Model model) {
+
+        if (cartContents != null && !cartContents.equals("")) {
+            List<String> cookieBooks = new ArrayList<>(Arrays.asList(cartContents.split("/")));
+            cookieBooks.remove(slug);
+            Cookie cookie = new Cookie("cartContents", String.join("/", cookieBooks));
+            cookie.setPath("/books");
+            response.addCookie(cookie);
+            model.addAttribute("isCartEmpty", false);
+        } else {
+            model.addAttribute("isCartEmpty", true);
+        }
+
+        return "redirect:/books/cart";
     }
 }
