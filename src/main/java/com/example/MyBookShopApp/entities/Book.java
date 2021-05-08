@@ -68,9 +68,11 @@ public class Book extends RepresentationModel<Book> {
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 
+/*
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+*/
 
     @ManyToOne
     @JoinColumn(name = "genres_id", referencedColumnName = "id")

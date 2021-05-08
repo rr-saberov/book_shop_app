@@ -7,6 +7,10 @@ spring:
     change-log: classpath:/db.changelog/db.changelog-master.xml
   messages:
     basename: lang.messages
+  security:
+    user:
+      name: Admin
+      password: Admin
   web:
     resources:
       static-locations: classpath:/spring-frontend/
@@ -24,6 +28,7 @@ spring:
       ddl-auto: create
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+
 
 upload:
   path: /home/ruslan/Documents/upload

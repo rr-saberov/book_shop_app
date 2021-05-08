@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@Api
 public class MainPageController {
 
     private final BookService bookService;
@@ -81,8 +80,8 @@ public class MainPageController {
         }
     }
 
-    @GetMapping("/search/page/{searchWord}")
     @ResponseBody
+    @GetMapping("/search/page/{searchWord}")
     public BooksPageDto getNextPage(@RequestParam Integer offset,
                                     @RequestParam Integer limit,
                                     @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {

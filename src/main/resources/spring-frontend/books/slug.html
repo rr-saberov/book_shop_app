@@ -517,7 +517,8 @@ p.error-browser
                         <div class="ProductCard-cart">
                             <!--+div.-cartElement.-cartElement_amount-->
                             <!--    +Amount._product-->
-                            <div class="ProductCard-cartElement">
+                            <form class="form form_cart">
+                            <!--<div class="ProductCard-cartElement">-->
                                 <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1111]"
                                         th:attr="data-bookid = ${slugBook.slug}"
                                         data-btntype="check" data-btnradio="buyblock" data-check="false"
@@ -525,7 +526,9 @@ p.error-browser
                                         src="/assets/img/icons/heart.svg" alt="heart.svg"/></span><span
                                         class="btn-content">Отложить</span>
                                 </button>
-                            </div>
+               <!--             </div>-->
+                            </form>
+                            <form class="form form_cartElement">
                             <div class="ProductCard-cartElement">
                                 <button class="btn btn_primary btn_outline" data-sendstatus="CART" data-bookid="[1111]"
                                         th:attr="data-bookid = ${slugBook.slug}" data-btntype="check"
@@ -535,6 +538,7 @@ p.error-browser
                                         alt="shopping-basket.svg"/></span><span class="btn-content">Купить</span>
                                 </button>
                             </div>
+                            </form>
                         </div>
                         <div class="ProductCard-cart">
                             <!--+div.-cartElement.-cartElement_amount-->
