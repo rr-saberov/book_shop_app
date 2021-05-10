@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -45,26 +46,21 @@ public class AuthUserController {
         return "profile";
     }
 
-    @GetMapping("/logout")
-    private String handleLogout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        SecurityContextHolder.clearContext();
-        if (session != null) {
-            session.invalidate();
-        }
-
-        for (Cookie cookie : request.getCookies()) {
-            cookie.setMaxAge(0);
-        }
-
-        return "redirect:/";
+    @ResponseBody
+    @PostMapping("/login")
+    public ContactConfirmationResponse handleLogin(@RequestBody ContactConfirmationPayload payload,
+                                                   HttpServletResponse httpServletResponse) {
+        ContactConfirmationResponse loginResponse = userRegister.jwtLogin(payload);
+        Cookie cookie = new Cookie("token", loginResponse.getResult());
+        httpServletResponse.addCookie(cookie);
+        return loginResponse;
     }
 
     @ResponseBody
     @PostMapping("/requestContactConfirmation")
     public ContactConfirmationResponse handleRequestContactConfirmation(@RequestBody ContactConfirmationPayload payload) {
         ContactConfirmationResponse response = new ContactConfirmationResponse();
-        response.setResult(true);
+        response.setResult("true");
         return response;
     }
 
@@ -72,7 +68,7 @@ public class AuthUserController {
     @PostMapping("/approveContact")
     public ContactConfirmationResponse handleApproveContact(@RequestBody ContactConfirmationPayload payload) {
         ContactConfirmationResponse response = new ContactConfirmationResponse();
-        response.setResult(true);
+        response.setResult("true");
         return response;
     }
 
@@ -81,11 +77,5 @@ public class AuthUserController {
         userRegister.registerNewUser(registrationForm);
         model.addAttribute("regOk", true);
         return "signin";
-    }
-
-    @ResponseBody
-    @PostMapping("/login")
-    public ContactConfirmationResponse handleLogin(@RequestBody ContactConfirmationPayload payload) {
-        return userRegister.login(payload);
     }
 }

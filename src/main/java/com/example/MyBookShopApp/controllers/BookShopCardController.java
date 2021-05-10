@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 @Controller
-@RequestMapping("/book")
+@RequestMapping("/books")
 public class BookShopCardController {
 
     private final BookRepository bookRepository;
