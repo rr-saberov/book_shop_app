@@ -1,12 +1,15 @@
 package com.example.MyBookShopApp.entities;
 
+import com.example.MyBookShopApp.controllers.BooksRestApiController;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -68,12 +71,6 @@ public class Book extends RepresentationModel<Book> {
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 
-/*
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-*/
-
     @ManyToOne
     @JoinColumn(name = "genres_id", referencedColumnName = "id")
     private Genres genre;
@@ -87,5 +84,10 @@ public class Book extends RepresentationModel<Book> {
     @JoinColumn(name = "tags_id",referencedColumnName = "id")
     private Tag tag;
 
-
+    @Override
+    public Book add(Link link) {
+/*        WebMvcLinkBuilder linkBuilder = WebMvcLinkBuilder.linkTo(BooksRestApiController.class)
+                .slash()*/
+        return super.add(link);
+    }
 }

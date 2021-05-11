@@ -41,7 +41,7 @@ p.error-browser
         | браузера здесь&nbsp;
     | для правильного отображения сайта.
 -->
-<header class="Header">
+<!--<header class="Header">
     <div class="Header-rowMain">
         <div class="wrap">
             <div class="row">
@@ -138,7 +138,8 @@ p.error-browser
             </nav>
         </div>
     </div>
-</header>
+</header>-->
+<header th:replace="~{fragments/header_fragment :: headFragment}"></header>
 <div class="Middle">
     <div class="wrap">
         <main class="Middle-main">

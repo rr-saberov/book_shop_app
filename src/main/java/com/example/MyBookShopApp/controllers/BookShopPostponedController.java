@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 @Controller
-@RequestMapping("/book")
+@RequestMapping("/books")
 public class BookShopPostponedController {
 
     private final BookRepository bookRepository;
@@ -25,7 +25,7 @@ public class BookShopPostponedController {
         this.bookRepository = bookRepository;
     }
 
-    @ModelAttribute(name = "shelvedBooks")
+    @ModelAttribute(name = "postponedBooks")
     public List<Book> shelvedBooks() {
         return new ArrayList<>();
     }
