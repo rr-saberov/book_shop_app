@@ -12,16 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 
 @Controller
 @RequestMapping("/books")
-public class BookShopPostponedController {
+public class BookshopPostponedController {
 
     private final BookRepository bookRepository;
 
     @Autowired
-    public BookShopPostponedController(BookRepository bookRepository) {
+    public BookshopPostponedController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

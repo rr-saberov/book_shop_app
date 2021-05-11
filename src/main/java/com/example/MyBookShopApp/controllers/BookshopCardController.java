@@ -16,12 +16,12 @@ import java.util.StringJoiner;
 
 @Controller
 @RequestMapping("/books")
-public class BookShopCardController {
+public class BookshopCardController {
 
     private final BookRepository bookRepository;
 
     @Autowired
-    public BookShopCardController(BookRepository bookRepository) {
+    public BookshopCardController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
