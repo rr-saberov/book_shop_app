@@ -20,8 +20,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "WHERE book.author.lastName = :name")
     List<Book> getBooksByAuthorLastNameContaining(@Param("name") String name);
 
-    List<Book> getBooksByTitleContaining(String bookTitle);
-
     List<Book> getBooksByPriceBetween(Double min, Double max);
 
     List<Book> getBookByTitleContaining(String bookTitle);
@@ -53,28 +51,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query("SELECT b " +
             "FROM Book b " +
-            "JOIN Author au " +
-            "ORDER BY au.lastName")
-    List<Book> getBooksOrderByAuthor(Pageable nextPage);
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "WHERE b.author.lastName = :authorName")
-    List<Book> getBooksByAuthorLastName(@Param("authorName") String authorName, Pageable nextPage);
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "ORDER BY b.genre.name")
-    List<Book> getBooksOrderByGenre();
-
-    @Query("SELECT b " +
-            "FROM Book b " +
-            "JOIN Genres ge " +
-            "WHERE ge.name = :genreName")
-    List<Book> getBookPageByGenreName(@Param("genreName") String genre, Pageable nextPage);
-
-    @Query("SELECT b " +
-            "FROM Book b " +
             "ORDER BY b.tag.tagName")
     List<Book> getBooksOrderByTag();
 
@@ -86,7 +62,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT b " +
             "FROM Book b " +
             "WHERE b.tag.tagName = :tagName")
-    List<Book> getBooksByTagName(@Param("tagName") String tag, Pageable nextPage);
+    List<Book> getBooksByTagName(@Param("tagName") String tag);
 
     Book findBookBySlug(String slug);
 

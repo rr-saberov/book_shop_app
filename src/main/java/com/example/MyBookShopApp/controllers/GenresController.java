@@ -3,7 +3,6 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.entities.SearchWordDto;
 import com.example.MyBookShopApp.services.BookService;
-import com.example.MyBookShopApp.services.GenresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +15,10 @@ import java.util.List;
 @Controller
 public class GenresController {
 
-    private final GenresService genresService;
     private final BookService bookService;
 
     @Autowired
-    public GenresController(GenresService genresService, BookService bookService) {
-        this.genresService = genresService;
+    public GenresController(BookService bookService) {
         this.bookService = bookService;
     }
 

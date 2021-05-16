@@ -67,11 +67,20 @@ public class BookService {
         return bookRepository.findAllByOrderByAuthor();
     }
 
-    //Methods for get books page
-
-    public Page<Book> getBestsellers() {
-        return new PageImpl<>(bookRepository.getBestsellers());
+    public Page<Book> getBooksWithTag(String tagName, Integer page, Integer limit) {
+        PageRequest nextPage = PageRequest.of(page, limit);
+        if (tagName.isEmpty()) {
+            return new PageImpl<>(bookRepository.getBooksPageOrderByTag(nextPage));
+        } else {
+            return new PageImpl<>(bookRepository.getBooksByTagName(tagName));
+        }
     }
+
+    public List<Book> getBestsellers() {
+        return bookRepository.getBestsellers();
+    }
+
+    //Methods for get books page
 
     public Page<Book> getPageOfRecommendedBooks(Integer page, Integer limit) {
         Pageable nextPage = PageRequest.of(page, limit);
@@ -92,23 +101,5 @@ public class BookService {
         Pageable nextPage = PageRequest.of(page, limit);
         Page<Book> books = bookRepository.getBookPageByTitleContaining(searchWord, nextPage);
         return books;
-    }
-
-    public Page<Book> getBooksPageByAuthor(String authorName, Integer page, Integer limit) {
-        PageRequest nextPage = PageRequest.of(page, limit);
-        if (authorName.isEmpty()) {
-            return new PageImpl<>(bookRepository.getBooksOrderByAuthor(nextPage));
-        } else {
-            return new PageImpl<>(bookRepository.getBooksByAuthorLastName(authorName, nextPage));
-        }
-    }
-
-    public Page<Book> getBooksPageByGenre(String genre, Integer page, Integer limit) {
-        Pageable nextPage = PageRequest.of(page, limit);
-        if (genre.isEmpty()) {
-            return new PageImpl<>(bookRepository.getBooksOrderByGenre());
-        } else {
-            return new PageImpl<>(bookRepository.getBookPageByGenreName(genre, nextPage));
-        }
     }
 }

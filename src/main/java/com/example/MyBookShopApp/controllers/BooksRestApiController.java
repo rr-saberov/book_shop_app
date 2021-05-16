@@ -61,7 +61,7 @@ public class BooksRestApiController {
     @GetMapping("/books/bestsellers")
     @ApiOperation("operation to get bestsellers")
     public ResponseEntity<List<Book>> bestSellerBooks() {
-        return ResponseEntity.ok(bookService.getBestsellers().getContent());
+        return ResponseEntity.ok(bookService.getBestsellers());
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)

@@ -11,6 +11,12 @@ spring:
   messages:
     basename: lang.messages
   security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id:
+            client-secret:
     user:
       name: Admin
       password: Admin
