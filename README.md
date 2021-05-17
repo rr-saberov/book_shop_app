@@ -1,6 +1,6 @@
 # book_shop_app
 
-Blog Engine app.
+Online book-shop app.
 
 Start app:
 
