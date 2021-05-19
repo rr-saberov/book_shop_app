@@ -178,10 +178,11 @@
               </div>
             </div>
           </div>
-          <div class="Cart-total">
+          <div class="Cart-total" th:each="book : ${bookCart}">
             <div class="Cart-block Cart-block_total">
               <strong class="Cart-title">Итого:
-              </strong><span class="Cart-price">534 р.</span><span class="Cart-price_old">658 р.</span>
+              </strong><span class="Cart-price" th:href="${book.discountPrice()}">534 р.</span>
+                <span class="Cart-price_old" th:href="${book.priceOld}">658 р.</span>
             </div>
             <div class="Cart-block"><a class="btn btn_success btn_md" href="/order.html">Купить</a>
             </div>

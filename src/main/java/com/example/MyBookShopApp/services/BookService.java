@@ -8,9 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -23,14 +25,19 @@ public class BookService {
     }
 
     public List<Book> getBooksByAuthor(String authorName) {
-        return bookRepository.getBooksByAuthorLastNameContaining(authorName);
+        return bookRepository.getBooksByAuthorLastNameContaining(authorName).stream()
+                .map(book -> book.add(Link.of("http://localhost:8085/api/books/by-author")))
+                .collect(Collectors.toList());
     }
 
     public List<Book> getBooksByTitle(String title) throws BookstoreApiWrongParameterException {
         if (title.equals("") || title.length() <= 1) {
             throw new BookstoreApiWrongParameterException("Wrong values passed to one or more parameters");
         } else {
-            List<Book> data = bookRepository.getBookByTitleContaining(title);
+            List<Book> data = bookRepository.getBookByTitleContaining(title)
+                    .stream()
+                    .map(book -> book.add(Link.of("http://localhost:8085/api/books/by-title")))
+                    .collect(Collectors.toList());
             if (data.size() > 0) {
                 return data;
             } else {
@@ -40,7 +47,9 @@ public class BookService {
     }
 
     public List<Book> getBooksWithPriceBetween(Double min, Double max) {
-        return bookRepository.getBooksByPriceBetween(min, max);
+        return bookRepository.getBooksByPriceBetween(min, max).stream()
+                .map(book -> book.add(Link.of("http://localhost:8085/api/books/by-price-range")))
+                .collect(Collectors.toList());
     }
 
     public List<Book> getBooksOrderByTag() {
@@ -52,7 +61,9 @@ public class BookService {
     }
 
     public List<Book> getBooksWithMaxPrice() {
-        return bookRepository.getBooksWithMaxDiscount();
+        return bookRepository.getBooksWithMaxDiscount().stream()
+                .map(book -> book.add(Link.of("http://localhost:8085/api/books/with-max-price")))
+                .collect(Collectors.toList());
     }
 
     public List<Book> getBooksOrderByGenre() {
@@ -77,7 +88,9 @@ public class BookService {
     }
 
     public List<Book> getBestsellers() {
-        return bookRepository.getBestsellers();
+        return bookRepository.getBestsellers().stream()
+                .map(book -> book.add(Link.of("http://localhost:8085/api/books/bestsellers")))
+                .collect(Collectors.toList());
     }
 
     //Methods for get books page
