@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Controller
 @RequestMapping("/books")
@@ -44,6 +45,25 @@ public class BookshopPostponedController {
             model.addAttribute("postponedBooks", booksFromCookieSlug);
         }
         return "postponed";
+    }
+
+    @PostMapping("/addBookToPostponed/{slug}")
+    public String handleAddBookToPostponed(@PathVariable("slug") String slug, @CookieValue(name = "postponedContents",
+            required = false) String postponedContents, HttpServletResponse response, Model model) {
+        if (postponedContents == null || postponedContents.equals("")) {
+            Cookie cookie = new Cookie("postponedContents", slug);
+            cookie.setPath("/books");
+            response.addCookie(cookie);
+            model.addAttribute("isPostponedEmpty", false);
+        } else if (!postponedContents.contains(slug)) {
+            StringJoiner stringJoiner = new StringJoiner("/");
+            stringJoiner.add(postponedContents).add(slug);
+            Cookie cookie = new Cookie("postponedContents", stringJoiner.toString());
+            cookie.setPath("/books");
+            response.addCookie(cookie);
+            model.addAttribute("isPostponedEmpty", false);
+        }
+        return "redirect:/books/" + slug;
     }
 
     @PostMapping("/changeBookStatus/postponed/remove/{slug}")

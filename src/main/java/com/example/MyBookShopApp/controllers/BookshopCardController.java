@@ -43,14 +43,12 @@ public class BookshopCardController {
             List<Book> booksFromCookieSlug = bookRepository.findBooksBySlugIn(cookieSlugs);
             model.addAttribute("bookCart", booksFromCookieSlug);
         }
-
         return "cart";
     }
 
     @PostMapping("/changeBookStatus/{slug}")
     public String handleChangeBookStatus(@PathVariable("slug") String slug, @CookieValue(name = "cartContents",
             required = false) String cartContents, HttpServletResponse response, Model model) {
-
         if (cartContents == null || cartContents.equals("")) {
             Cookie cookie = new Cookie("cartContents", slug);
             cookie.setPath("/books");
@@ -70,7 +68,6 @@ public class BookshopCardController {
     @PostMapping("/changeBookStatus/cart/remove/{slug}")
     public String handleRemoveBookFromCartRequest(@PathVariable("slug") String slug, @CookieValue(name =
             "cartContents", required = false) String cartContents, HttpServletResponse response, Model model) {
-
         if (cartContents != null && !cartContents.equals("")) {
             List<String> cookieBooks = new ArrayList<>(Arrays.asList(cartContents.split("/")));
             cookieBooks.remove(slug);
@@ -81,7 +78,6 @@ public class BookshopCardController {
         } else {
             model.addAttribute("isCartEmpty", true);
         }
-
         return "redirect:/books/cart";
     }
 }

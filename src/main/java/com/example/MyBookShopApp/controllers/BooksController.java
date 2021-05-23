@@ -30,7 +30,7 @@ public class BooksController {
         this.storage = storage;
     }
 
-    @GetMapping("/{slug}")
+    @GetMapping("{slug}")
     public String bookPage(@PathVariable String slug, Model model) {
         Book book = bookRepository.findBookBySlug(slug);
         model.addAttribute("slugBook", book);

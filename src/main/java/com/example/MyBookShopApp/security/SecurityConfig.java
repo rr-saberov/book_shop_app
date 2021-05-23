@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.security;
 
-import com.example.MyBookShopApp.security.jwt.JWTRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +19,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BookstoreUserDetailsService bookstoreUserDetailsService;
-    private final JWTRequestFilter filter;
+ /*   private final JWTRequestFilter filter;*/
 
     @Autowired
-    public SecurityConfig(BookstoreUserDetailsService bookstoreUserDetailsService, JWTRequestFilter filter) {
+    public SecurityConfig(BookstoreUserDetailsService bookstoreUserDetailsService /*,JWTRequestFilter filter*/) {
         this.bookstoreUserDetailsService = bookstoreUserDetailsService;
-        this.filter = filter;
+/*        this.filter = filter;*/
     }
 
     @Bean
@@ -58,6 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/signin").deleteCookies("token");
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+/*        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);*/
     }
 }
