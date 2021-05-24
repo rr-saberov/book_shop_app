@@ -74,4 +74,12 @@ public class BooksController {
         reviewRepository.save(new Review(review, bookRepository.findBookBySlug(slug).getId()));
         return "redirect:/books/" + slug;
     }
+
+    @PostMapping("{slug}/updateRating")
+    public String updateRating(@PathVariable("slug") String slug, Double rating) {
+        Book bookToUpdate = bookRepository.findBookBySlug(slug);
+        bookToUpdate.setRating(rating);
+        bookRepository.save(bookToUpdate);
+        return "redirect:/books/" + slug;
+    }
 }

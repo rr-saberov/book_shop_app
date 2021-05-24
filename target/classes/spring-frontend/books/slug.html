@@ -484,14 +484,16 @@ p.error-browser
                 </div>
                 <div class="Book-review">
                     <div class="add-review">
-                        <form class="form form_search" action="#" method="post" data-searchlimit="20">
-                            <input class="review-input" id="query" name="query" type="text" value=""/>
-                            <button class="review-button" type="submit" name="search" id="search">
-                                Отправить отзыв
+                        <form class="form form_search" action="#" method="post" th:action="${'/books/' + slugBook.slug + '/review'}">
+                            <input class="review-input" type="text" value=""/>
+                            <button class="review-button" type="submit" name="review">
+                                Оставить отзыв
                             </button>
                         </form>
                     </div>
                 </div>
+                <br>
+                <br>
                 <div class="Comments">
                     <div class="Comment">
                         <div class="Comment-column Comment-column_pict">
