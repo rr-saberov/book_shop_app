@@ -15,9 +15,7 @@ public class Genres {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
-
     @OneToMany(mappedBy = "genre")
     private List<Book> bookList;
 }

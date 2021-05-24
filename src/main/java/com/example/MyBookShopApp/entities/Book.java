@@ -58,6 +58,9 @@ public class Book extends RepresentationModel<Book> {
     @ApiModelProperty("discount value")
     private Double price;
 
+    @Column(name = "rating")
+    private Double rating;
+
     @JsonProperty
     public Integer discountPrice() {
         return priceOld - Math.toIntExact(Math.round(price * priceOld));

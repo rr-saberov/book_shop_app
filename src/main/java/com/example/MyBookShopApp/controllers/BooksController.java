@@ -2,7 +2,9 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.data.ResourceStorage;
 import com.example.MyBookShopApp.entities.Book;
+import com.example.MyBookShopApp.entities.Review;
 import com.example.MyBookShopApp.repositories.BookRepository;
+import com.example.MyBookShopApp.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -22,11 +24,13 @@ import java.util.logging.Logger;
 public class BooksController {
 
     private final BookRepository bookRepository;
+    private final ReviewRepository reviewRepository;
     private final ResourceStorage storage;
 
     @Autowired
-    public BooksController(BookRepository bookRepository, ResourceStorage storage) {
+    public BooksController(BookRepository bookRepository, ReviewRepository reviewRepository, ResourceStorage storage) {
         this.bookRepository = bookRepository;
+        this.reviewRepository = reviewRepository;
         this.storage = storage;
     }
 
@@ -63,5 +67,11 @@ public class BooksController {
                 .contentType(mediaType)
                 .contentLength(data.length)
                 .body(new ByteArrayResource(data));
+    }
+    
+    @PostMapping("{slug}/review")
+    public String addReview(@PathVariable("slug") String slug, String review) {
+        reviewRepository.save(new Review(review, bookRepository.findBookBySlug(slug).getId()));
+        return "redirect:/books/" + slug;
     }
 }

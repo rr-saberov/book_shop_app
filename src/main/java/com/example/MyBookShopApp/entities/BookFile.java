@@ -15,12 +15,9 @@ public class BookFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String hash;
-
     @Column(name = "type_id")
     private Integer typeId;
-
     private String path;
 
     @ManyToOne
