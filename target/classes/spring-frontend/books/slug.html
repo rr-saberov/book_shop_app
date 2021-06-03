@@ -420,7 +420,7 @@ p.error-browser
                         <div class="ProductCard-cart">
                             <!--+div.-cartElement.-cartElement_amount-->
                             <!--    +Amount._product-->
-                            <form class="form form_cart" th:action="${'/books/addBookToPostponed/' + slugBook.slug}" th:object="${slugBook}">
+                            <form class="form form_cart" method="post" th:action="${'/books/addBookToPostponed/' + slugBook.slug}" th:object="${slugBook}">
                             <div class="ProductCard-cartElement">
                                 <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1111]"
                                         data-btntype="check" data-btnradio="buyblock" data-check="false"
@@ -484,7 +484,8 @@ p.error-browser
                 </div>
                 <div class="Book-review">
                     <div class="add-review">
-                        <form class="form form_search" action="#" method="post" th:action="${'/books/' + slugBook.slug + '/review'}">
+                        <form class="book-review-add" method="post" th:action="${'/books/' + slugBook.slug + '/review'}"
+                              th:object="${slugBook}">
                             <input class="review-input" type="text" value=""/>
                             <button class="review-button" type="submit" name="review">
                                 Оставить отзыв

@@ -420,7 +420,7 @@ p.error-browser
                         <div class="ProductCard-cart">
                             <!--+div.-cartElement.-cartElement_amount-->
                             <!--    +Amount._product-->
-                            <form class="form form_cart" th:action="${'/books/addBookToPostponed/' + slugBook.slug}" th:object="${slugBook}">
+                            <form class="form form_cart" method="post" th:action="${'/books/addBookToPostponed/' + slugBook.slug}" th:object="${slugBook}">
                             <div class="ProductCard-cartElement">
                                 <button class="btn btn_primary btn_outline" data-sendstatus="KEPT" data-bookid="[1111]"
                                         data-btntype="check" data-btnradio="buyblock" data-check="false"

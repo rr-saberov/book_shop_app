@@ -1,4 +1,3 @@
-/*
 package com.example.MyBookShopApp.security.jwt;
 
 import com.example.MyBookShopApp.security.BookstoreUserDetails;
@@ -60,4 +59,4 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }
-*/
+

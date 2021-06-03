@@ -15,8 +15,8 @@ spring:
       client:
         registration:
           facebook:
-            client-id:
-            client-secret:
+            client-id: 812711209647696
+            client-secret: 1f24e9b8cb25c703db1e08957fab04d8
     user:
       name: Admin
       password: Admin
@@ -34,7 +34,7 @@ spring:
     initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 

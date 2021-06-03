@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 @SpringBootTest
 class BookServiceTest {
 
-    private List<Book> expectedList;
-    private final BookService bookService;
-    private final BookRepository bookRepository;
+    List<Book> expectedList;
+    final BookService bookService;
+    final BookRepository bookRepository;
 
     @Autowired
     BookServiceTest(BookService bookService, BookRepository bookRepository) {
