@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class BookService {
 
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
     public BookService(BookRepository bookRepository) {
@@ -31,7 +31,7 @@ public class BookService {
     }
 
     public List<Book> getBooksByTitle(String title) throws BookstoreApiWrongParameterException {
-        if (title.equals("") || title.length() <= 1) {
+        if (title.isEmpty()) {
             throw new BookstoreApiWrongParameterException("Wrong values passed to one or more parameters");
         } else {
             List<Book> data = bookRepository.getBookByTitleContaining(title)

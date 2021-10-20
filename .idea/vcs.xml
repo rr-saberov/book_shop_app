@@ -2,8 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/main/resources" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/main/resources/git-20210321T141810Z-001" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/main/resources/spring-frontend" vcs="Git" />
   </component>
 </project>
