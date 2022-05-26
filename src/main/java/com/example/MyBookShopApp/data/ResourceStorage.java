@@ -46,7 +46,8 @@ public class ResourceStorage {
             String fileName = slug + "." + FilenameUtils.getExtension(file.getOriginalFilename());
             Path path = Paths.get(uploadPath, fileName);
             resourceURI = "/upload/" + fileName;
-            file.transferTo(path);  //uploading user file here
+            //uploading user file here
+            file.transferTo(path);
             Logger.getLogger(this.getClass().getSimpleName()).info(fileName + " uploaded OK!");
         }
         return resourceURI;

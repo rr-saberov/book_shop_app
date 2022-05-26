@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +12,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthUserController {
 
     private final BookstoreUserRegister userRegister;
-
-    @Autowired
-    public AuthUserController(BookstoreUserRegister userRegister) {
-        this.userRegister = userRegister;
-    }
 
     @GetMapping("/my")
     public String handleMy() {
