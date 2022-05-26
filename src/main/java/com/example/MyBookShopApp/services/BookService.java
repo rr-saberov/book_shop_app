@@ -3,7 +3,7 @@ package com.example.MyBookShopApp.services;
 import com.example.MyBookShopApp.entities.Book;
 import com.example.MyBookShopApp.errs.BookstoreApiWrongParameterException;
 import com.example.MyBookShopApp.repositories.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -15,14 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
-
-    @Autowired
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     public List<Book> getBooksByAuthor(String authorName) {
         return bookRepository.getBooksByAuthorLastNameContaining(authorName).stream()
@@ -93,8 +89,7 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    //Methods for get books page
-
+    //Methods to get books page
     public Page<Book> getPageOfRecommendedBooks(Integer page, Integer limit) {
         Pageable nextPage = PageRequest.of(page, limit);
         return bookRepository.findAll(nextPage);

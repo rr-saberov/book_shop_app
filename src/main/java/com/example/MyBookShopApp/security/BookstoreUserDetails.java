@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.security;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,14 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 
+@RequiredArgsConstructor
 public class BookstoreUserDetails implements UserDetails {
 
     @Getter
     private final BookstoreUser bookstoreUser;
-
-    public BookstoreUserDetails(BookstoreUser bookstoreUser) {
-        this.bookstoreUser = bookstoreUser;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
